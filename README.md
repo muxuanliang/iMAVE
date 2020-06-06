@@ -26,17 +26,24 @@ LinkingTo: Rcpp, RcppEigen
 # Example
 #### sampling
 nobs <- 500
+
 nvars <- 10
+
 gamma <- 0.1
+
 tau <- 7
+
 sigma <- 0.6
 
 x <- matrix(rnorm(nobs * nvars), nobs, nvars)
+
 beta1 <- c(1,1,1,1,1,1,1,1,1,1)
+
 beta2 <- c(1,-1,1,-1,1,-1,1,-1,1,-1)
 
 #### generate interaction and main effect ########
 inter_eff <- tau * (pnorm(x %*% beta1) - 0.5) + tau * (pnorm(x %*% beta2) - 0.5)
+
 main_eff <- (gamma * x %*% beta1)^2
 
 #### generate noise and data #####################
