@@ -1,0 +1,13 @@
+Package: iMAVE
+Type: Package
+Title: Dimensional reduction for model effect modification (interaction MAVE)
+Version: 1.0
+Date: 2020-06-06
+Author: Muxuan Liang <mliang@fredhutch.org>
+Maintainer: Muxuan Liang <mliang@fredhutch.org>
+Description: Dimensional reduction for the model effect modification. It utilizes MAVE type methods to reduce the dimension for the treatment-covariates interaction. When assumed no unmeasured confounding, it is connected to the individialized treatment effect.
+License: GPL-3
+Imports: Rcpp (>= 1.0.3),
+         RcppEigen,
+         mgcv
+LinkingTo: Rcpp, RcppEigen

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591483185252.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1457729356",
+    "id" : "E5243CFA",
+    "lastKnownWriteTime" : 1591486479,
+    "last_content_update" : 1591486479268,
+    "path" : "~/Documents/Research/Menggang Yu/dr_mave/iMAVE/man/iMAVE-package.Rd",
+    "project_path" : "man/iMAVE-package.Rd",
+    "properties" : {
+        "cursorPosition" : "28,4",
+        "scrollLine" : "23"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}
