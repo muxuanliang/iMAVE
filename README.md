@@ -24,7 +24,7 @@ Imports: Rcpp (>= 1.0.3),
 LinkingTo: Rcpp, RcppEigen
 
 # Example
-#### sampling
+#### Sampling
 nobs <- 500
 
 nvars <- 10
@@ -41,18 +41,18 @@ beta1 <- c(1,1,1,1,1,1,1,1,1,1)
 
 beta2 <- c(1,-1,1,-1,1,-1,1,-1,1,-1)
 
-#### generate interaction and main effect ########
+#### Generate interaction and main effect ########
 inter_eff <- tau * (pnorm(x %*% beta1) - 0.5) + tau * (pnorm(x %*% beta2) - 0.5)
 
 main_eff <- (gamma * x %*% beta1)^2
 
-#### generate noise and data #####################
+#### Generate noise and data #####################
 epsilon <- rnorm(nobs, 0, sigma)
 
 Tr <- rnorm(nobs)>0
 
 y <- (Tr-0.5) * inter_eff + main_eff + epsilon
 
-#### run iMAVEInferAugment ###########
+#### Run iMAVEInferAugment ###########
 fit <- iMAVEInferAugment(fit=NULL, x, y, Tr, pi = rep(0.5, nobs), d=1)
 }
