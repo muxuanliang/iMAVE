@@ -55,4 +55,3 @@ y <- (Tr-0.5) * inter_eff + main_eff + epsilon
 
 #### Run iMAVEInferAugment ###########
 fit <- iMAVEInferAugment(fit=NULL, x, y, Tr, pi = rep(0.5, nobs), d=1)
-}
