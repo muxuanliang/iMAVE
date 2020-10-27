@@ -1,18 +1,20 @@
 #' cv-MAVEdim for dimension selection in iMAVE or IMAVE2
 #' 
-#' @param x input matrix of dimension nobs \times nvars. Each raw is a observation, each column is a covariate
+#' @param x input matrix of dimension nobs x nvars. Each raw is a observation, each column is a covariate
 #' @param y numeric response
 #' @param tr is a vector of binary value representing two treatment, 0 or 1. 
+#' @param dims vector of potential dimensions to be reduced
 #' @param pi is the propensity score p(tr=1|X)
 #' @param nfolds number of the folds in the cross-validation
 #' @param parallel implies whether use parallel computing in the cross-validation
+#' @param ... can be other parameters in iMAVE function
 #' @return An object with S3 class "iMAVE"
 #' @import Rcpp
 #' 
 #' @export
 #' 
 cv.iMAVEdim <- function(x, y, tr,
-                      dims = c(1:ncol(x)),
+                      dims = c(1:3),
                       pi = 0.5,
                       nfolds = 5,
                       parallel = F,
@@ -43,15 +45,14 @@ cv.iMAVEdim <- function(x, y, tr,
     outlist[[numdim_select]] <- list()
   }
   
-  if (parallel && require(foreach)) {
-    library(doParallel)
+  if (parallel) {
     n_cores <- detectCores(all.tests = FALSE, logical = TRUE)
     cl <- makeCluster(n_cores)
     registerDoParallel(cl)
   }
   
   for (numdim_select in 1:numdim){
-    if (parallel && require(foreach)) {
+    if (parallel) {
       outlist[[numdim_select]] = foreach (i=seq(nfolds), .packages=c("iMAVE")) %dopar% {
         which=foldid==i
         iMAVE(x[!which,,drop=FALSE], y[!which], tr[!which], pi = pi[!which], d = dims[numdim_select], ...)
@@ -64,7 +65,7 @@ cv.iMAVEdim <- function(x, y, tr,
     }
   }
   
-  if (parallel && require(foreach)) {
+  if (parallel) {
     stopCluster(cl)
   }
   
@@ -89,62 +90,7 @@ cv.iMAVEdim <- function(x, y, tr,
   iMAVE.object$call=iMAVE.call
   
   out=list(cvm=cvm,cvsd=cvsd,cvup=cvm+cvsd,
-           cvlo=cvm-cvsd, cvraw = cvraw, iMAVE.fit=iMAVE.object, beta = iMAVE.object$beta)
+           cvlo=cvm-cvsd, cvraw = cvraw, iMAVE.fit=iMAVE.object, beta = iMAVE.object$beta, opt_dim=dims[opt.index])
   class(out)="cv.iMAVE"
   out
-}
-
-loss.score <- function(nfolds, foldid, fitobj, x, y, tr, pi){
-  
-  loss <- array(0,c(nfolds, 1))
-  for (i in 1:nfolds){
-    which = foldid==i
-    x.train <- x[!which,,drop=F]
-    y.train <- y[!which]
-    tr.train <- tr[!which]
-    pi.train <- pi[!which]
-    x.test <- x[which,,drop=F]
-    y.test <- y[which]
-    tr.test <- tr[which]
-    pi.test <- pi[which]
-    
-    beta <- fitobj[[i]]$beta
-    
-    if(anyNA(beta)){
-      loss[i] <- NA
-    } else {
-      pred.link <- x.test %*% beta
-      train.link <- x.train %*% beta
-      
-      y.train.weighted <- (tr.train-0.5) * y.train / (pi.train * tr.train + (1-pi.train) * (1-tr.train))
-      
-      pred <- ks(train.link,y.train.weighted, pred.link)
-      yy.test <- (tr.test - 0.5) * y.test/(pi.test * tr.test + (1-pi.test) * (1-tr.test))
-      loss[i] <- mean((yy.test-pred)^2)
-    }
-  }
-  loss
-}
-
-ks <- function(x, y, x.test){
-  nobs <- nrow(x)
-  nvars <- ncol(x)
-  hopt <- (4/(nvars+2))^(1/(nvars+4)) * (nobs^(-1/(nvars+4)))
-  wm <- function(t){
-    if (ncol(x)==1){
-      weight <- exp(-0.5 * (t-x)^2/(hopt^2)) * hopt
-    } else {
-      weight <- apply(x,1,function(s){exp(-0.5 * sum((t-s)^2)/(hopt^2)) * hopt^(ncol(x))})
-    }
-    weighted.mean(y, weight)
-  }
-  y.test<- array(0,c(nrow(x.test),1))
-  for (index in 1:nrow(x.test)){
-    if (ncol(x.test)==1){
-      y.test[index] <- wm(x.test[index])
-    } else {
-      y.test[index] <- wm(x.test[index,])
-    }
-  }
-  y.test
 }

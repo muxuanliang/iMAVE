@@ -164,8 +164,8 @@ public:
   datX(datX_.data(), datX_.rows(), datX_.cols()),
   datY(datY_.data(), datY_.size()),
   datTr(datTr_.data(), datTr_.size()),
-  method_init(method_init_),
   datPi(datPi_.data(), datPi_.size()),
+  method_init(method_init_),
   constraint(constraint_),
   normalizeWeight(normalizeWeight_)
   {}

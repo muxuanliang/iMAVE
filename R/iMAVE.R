@@ -1,9 +1,10 @@
 #' iMAVE for model effect modification
 #' 
-#' @param x input matrix of dimension nobs \times nvars. Each raw is a observation, each column is a covariate
+#' @param x input matrix of dimension nobs x nvars. Each raw is a observation, each column is a covariate
 #' @param y numeric response
 #' @param tr is a vector of binary value representing two treatment, 0 or 1. 
 #' @param d number of the dimension to reduce
+#' @param pi is the propensity score p(tr=1|X)
 #' @param method  'zero' or 'all' decides the local linear expansion only near zero or all data point. 'all' is default for imave and imave2.
 #' @param monoLink indicates wehter the link function is assumed to be monotone. False by default.
 #' @param mainEffect mainEffect is TRUE if iMAVE2; FALSE if iMAVE
@@ -125,27 +126,6 @@ iMAVE <- function(x, y, tr,
   fit
   }
 
-ks <- function(x, y, x.test){
-  nobs <- nrow(x)
-  nvars <- ncol(x)
-  hopt <- (4/(nvars+2))^(1/(nvars+4)) * (nobs^(-1/(nvars+4)))
-  wm <- function(t){
-    if (ncol(x)==1){
-      weight <- exp(-0.5 * (t-x)^2/(hopt^2)) * hopt
-    } else {
-      weight <- apply(x,1,function(s){exp(-0.5 * sum((t-s)^2)/(hopt^2)) * hopt^(ncol(x))})
-    }
-    weighted.mean(y, weight)
-  }
-  y.test<- array(0,c(nrow(x.test),1))
-  for (index in 1:nrow(x.test)){
-    if (ncol(x.test)==1){
-      y.test[index] <- wm(x.test[index])
-    } else {
-      y.test[index] <- wm(x.test[index,])
-    }
-  }
-  y.test
-}
+
   
   

@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # R Package: iMAVE
 
 This pakcage implements the iMAVE methods in Liang&Yu's paper (see [reference](https://arxiv.org/abs/1804.05373)). The iMAVE method achieves the dimension reduction for the model effect modification (intercation between a Treatment and many modifiers). It includes three functions, iMAVE, cv.iMAVEdim, and iMAVEInferAugment. The iMAVE implements iMAVE and iMAVE2 with a pre-specified dimension. The cv.iMAVEdim selects the optimal dimension by cross-validation. The iMAVEInferAugment provides the se estimation of the iMAVE or iMAVE2 when dimension is 1.
@@ -24,6 +29,7 @@ Imports: Rcpp (>= 1.0.3),
 LinkingTo: Rcpp, RcppEigen
 
 # Example
+```
 #### Sampling
 nobs <- 500
 
@@ -53,5 +59,7 @@ Tr <- rnorm(nobs)>0
 
 y <- (Tr-0.5) * inter_eff + main_eff + epsilon
 
-#### Run iMAVEInferAugment ###########
-fit <- iMAVEInferAugment(fit=NULL, x, y, Tr, pi = rep(0.5, nobs), d=1)
+#### Run iMAVE with dimension selection ###########
+fit_select_dim <- cv.iMAVEdim(x, y, Tr, pi = rep(0.5, nobs))
+fit <- iMAVE(x, y, Tr, pi = rep(0.5, nobs), d=fit_select_dim$opt_dim)
+```

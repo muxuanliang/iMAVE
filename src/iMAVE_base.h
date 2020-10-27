@@ -36,9 +36,7 @@ public:
   {
     VecTypeAB newAB;
     next_AB(newAB, kernel);
-    //std::cout << "AB updating1" << std::endl;
     main_AB = newAB;
-    //std::cout << "AB updating2" << std::endl;
   }
   
   void update_beta(VecTypeKernel &kernel)
@@ -87,7 +85,6 @@ public:
       update_AB(main_kernel);
       update_beta(main_kernel);
     }
-    std::cout << "last interation change:" << delta << std::endl;
     return i;
   }
   
