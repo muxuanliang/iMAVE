@@ -30,7 +30,7 @@ LinkingTo: Rcpp, RcppEigen
 
 # Important Notice for Windows User
 
-This R packages involve C++ code. Before you compile from the source, please install the [Rtool40](https://cran.r-project.org/bin/windows/Rtools/) tool. 
+This R packages involve C++ code. Before you compile from the source, please install the [Rtools40](https://cran.r-project.org/bin/windows/Rtools/) tool. 
 
 # Example
 ```
