@@ -1,4 +1,0 @@
-useDynLib(iMAVE)
-import(RcppEigen)
-importFrom(Rcpp, evalCpp)
-exportPattern("^[[:alpha:]]+")
