@@ -28,6 +28,10 @@ Imports: Rcpp (>= 1.0.3),
 
 LinkingTo: Rcpp, RcppEigen
 
+# Important Notice for Windows User
+
+This R packages involve C++ code. Before you compile from the source, please install the [Rtool40](https://cran.r-project.org/bin/windows/Rtools/) tool. 
+
 # Example
 ```
 #### Sampling
