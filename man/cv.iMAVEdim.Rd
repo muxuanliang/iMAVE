@@ -4,16 +4,7 @@
 \alias{cv.iMAVEdim}
 \title{cv-MAVEdim for dimension selection in iMAVE or IMAVE2}
 \usage{
-cv.iMAVEdim(
-  x,
-  y,
-  tr,
-  dims = c(1:ncol(x)),
-  pi = 0.5,
-  nfolds = 5,
-  parallel = F,
-  ...
-)
+cv.iMAVEdim(x, y, tr, dims = c(1:3), pi = 0.5, nfolds = 5, parallel = F, ...)
 }
 \arguments{
 \item{x}{input matrix of dimension nobs x nvars. Each raw is a observation, each column is a covariate}
@@ -33,8 +24,22 @@ cv.iMAVEdim(
 \item{...}{can be other parameters in iMAVE function}
 }
 \value{
-An object with S3 class "iMAVE"
+A list
+\describe{
+\item{cvm}{Mean of the cross-validation for each candidate dimension.}
+\item{cvsd}{Estimate of standard error of \code{cvm}.}
+\item{cvup}{Upper curve = \code{cvm+cvsd}.}
+\item{cvlo}{lower curve = \code{cvm-cvsd}.}
+\item{cvraw}{All cross-validation error on each fold for each candidate dimension.}
+\item{iMAVE.fit}{a fitted \code{iMAVE} object with the selected dimension}
+\item{beta}{Estimated directions of a fitted \code{iMAVE} object with the selected dimension}
+\item{opt_dim}{Selected optimal dimension}
+}
+#' @references Muxuan Liang, Menggang Yu (2020). A Semiparametric Approach to Model Effect Modification.
 }
 \description{
 cv-MAVEdim for dimension selection in iMAVE or IMAVE2
+}
+\author{
+Muxuan Liang
 }

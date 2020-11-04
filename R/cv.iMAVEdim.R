@@ -8,7 +8,20 @@
 #' @param nfolds number of the folds in the cross-validation
 #' @param parallel implies whether use parallel computing in the cross-validation
 #' @param ... can be other parameters in iMAVE function
-#' @return An object with S3 class "iMAVE"
+#' @return A list
+#' \describe{
+#' \item{cvm}{Mean of the cross-validation for each candidate dimension.}
+#' \item{cvsd}{Estimate of standard error of \code{cvm}.}
+#' \item{cvup}{Upper curve = \code{cvm+cvsd}.}
+#' \item{cvlo}{lower curve = \code{cvm-cvsd}.}
+#' \item{cvraw}{All cross-validation error on each fold for each candidate dimension.}
+#' \item{iMAVE.fit}{a fitted \code{iMAVE} object with the selected dimension}
+#' \item{beta}{Estimated directions of a fitted \code{iMAVE} object with the selected dimension}
+#' \item{opt_dim}{Selected optimal dimension}
+#' }
+#' #' @references Muxuan Liang, Menggang Yu (2020). A Semiparametric Approach to Model Effect Modification.
+#'
+#' @author Muxuan Liang
 #' @import Rcpp
 #' 
 #' @export

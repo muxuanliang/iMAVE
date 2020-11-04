@@ -21,6 +21,13 @@ iMAVEInferAugment(fit = NULL, x, y, tr, pi = 0.5, efficient = FALSE, ...)
 
 \item{...}{can be other parameters in iMAVE function}
 }
+\value{
+A list
+\describe{
+\item{coef_one_step}{Estimated direction after one-step estimation.}
+\item{se}{Estimated se of \code{coef_one_step}.}
+}
+}
 \description{
 iMAVEInferAugment for the infetence of the estimated index
 }

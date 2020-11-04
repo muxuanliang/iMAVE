@@ -13,7 +13,17 @@
 #' @param maxit is the maxmum iteration
 #' @param normalizeWeight indicates whether the weight for kernels is normalized. Default is TRUE.
 #' @param constraint indicates the constaint on B; by default, Grassmann Manifold
-#' @return An object with S3 class "iMAVE"
+#' @return  A list
+#' \describe{
+#' \item{dim}{Number of the dimension reduced}
+#' \item{beta}{Estimated linear directions of the dimension reduced on effect mofdification}
+#' \item{ab}{Esimated value and gradient of the link function}
+#' \item{niter}{Number of iterations in optimizaton algorithm to achieve convergence}
+#' \item{mainEffect}{Estimated main effect evaluated at each sample}
+#' }
+#' @references Muxuan Liang, Menggang Yu (2020). A Semiparametric Approach to Model Effect Modification.
+#'
+#' @author Muxuan Liang
 #' @import Rcpp
 #' 
 #' @export

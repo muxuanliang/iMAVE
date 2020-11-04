@@ -7,6 +7,11 @@
 #' @param pi is the propensity score (success)
 #' @param efficient imdicates whther use efficient score when the condition variance of the outcome is a constant
 #' @param ... can be other parameters in iMAVE function
+#' @return A list
+#' \describe{
+#' \item{coef_one_step}{Estimated direction after one-step estimation.}
+#' \item{se}{Estimated se of \code{coef_one_step}.}
+#' }
 #' @import Rcpp
 #'
 #' @export
