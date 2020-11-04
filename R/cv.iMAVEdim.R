@@ -14,7 +14,7 @@
 #' \item{cvsd}{Estimate of standard error of \code{cvm}.}
 #' \item{cvup}{Upper curve = \code{cvm+cvsd}.}
 #' \item{cvlo}{lower curve = \code{cvm-cvsd}.}
-#' \item{cvraw}{All cross-validation error on each fold for each candidate dimension.}
+#' \item{cvraw}{All cross-validation errors on each fold for each candidate dimension.}
 #' \item{iMAVE.fit}{a fitted \code{iMAVE} object with the selected dimension}
 #' \item{beta}{Estimated directions of a fitted \code{iMAVE} object with the selected dimension}
 #' \item{opt_dim}{Selected optimal dimension}

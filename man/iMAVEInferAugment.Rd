@@ -17,7 +17,7 @@ iMAVEInferAugment(fit = NULL, x, y, tr, pi = 0.5, efficient = FALSE, ...)
 
 \item{pi}{is the propensity score (success)}
 
-\item{efficient}{imdicates whther use efficient score when the condition variance of the outcome is a constant}
+\item{efficient}{indicates whther use efficient score when the condition variance of the outcome is a constant}
 
 \item{...}{can be other parameters in iMAVE function}
 }

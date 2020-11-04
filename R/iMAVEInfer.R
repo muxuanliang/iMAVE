@@ -5,7 +5,7 @@
 #' @param y numeric response
 #' @param tr is a vector of binary value representing two treatment, 0 or 1. 
 #' @param pi is the propensity score (success)
-#' @param efficient imdicates whther use efficient score when the condition variance of the outcome is a constant
+#' @param efficient indicates whther use efficient score when the condition variance of the outcome is a constant
 #' @param ... can be other parameters in iMAVE function
 #' @return A list
 #' \describe{

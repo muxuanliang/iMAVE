@@ -11,12 +11,12 @@
 #' @param initial selects the methds to obtain initial values. Default option "direct" start from 0; "zero" solves an imave with method='zero'
 #' @param tol is the convergence tolerence
 #' @param maxit is the maxmum iteration
-#' @param normalizeWeight indicates whether the weight for kernels is normalized. Default is TRUE.
+#' @param normalizeWeight indicates whether the weights for the kernel are normalized. Default is TRUE.
 #' @param constraint indicates the constaint on B; by default, Grassmann Manifold
 #' @return  A list
 #' \describe{
 #' \item{dim}{Number of the dimension reduced}
-#' \item{beta}{Estimated linear directions of the dimension reduced on effect mofdification}
+#' \item{beta}{Estimated linear directions of the dimension reduced on effect modification}
 #' \item{ab}{Estimated value and gradient of the link function evaluated at each sample}
 #' \item{niter}{Number of iterations in optimizaton algorithm to achieve convergence}
 #' \item{mainEffect}{Estimated main effect evaluated at each sample}
