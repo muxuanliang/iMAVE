@@ -17,7 +17,7 @@
 #' \describe{
 #' \item{dim}{Number of the dimension reduced}
 #' \item{beta}{Estimated linear directions of the dimension reduced on effect mofdification}
-#' \item{ab}{Esimated value and gradient of the link function}
+#' \item{ab}{Estimated value and gradient of the link function evaluated at each sample}
 #' \item{niter}{Number of iterations in optimizaton algorithm to achieve convergence}
 #' \item{mainEffect}{Estimated main effect evaluated at each sample}
 #' }
